@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "TemperatureReader Remote Debug (.NET Core)",
+      "name": "SampleModule Remote Debug (.NET Core)",
       "type": "coreclr",
       "request": "attach",
       "processId": "${command:pickRemoteProcess}",
@@ -11,7 +11,7 @@
         "pipeArgs": [
           "exec",
           "-i",
-          "TemperatureReader",
+          "SampleModule",
           "sh",
           "-c"
         ],
@@ -20,17 +20,17 @@
         "quoteArgs": true
       },
       "sourceFileMap": {
-        "/app": "${workspaceFolder}/modules/TemperatureReader"
+        "/app": "${workspaceFolder}/modules/SampleModule"
       },
       "justMyCode": true
     },
     {
-      "name": "TemperatureReader Local Debug (.NET Core)",
+      "name": "SampleModule Local Debug (.NET Core)",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceRoot}/modules/TemperatureReader/bin/Debug/netcoreapp2.1/TemperatureReader.dll",
+      "program": "${workspaceRoot}/modules/SampleModule/bin/Debug/netcoreapp2.1/SampleModule.dll",
       "args": [],
-      "cwd": "${workspaceRoot}/modules/TemperatureReader",
+      "cwd": "${workspaceRoot}/modules/SampleModule",
       "internalConsoleOptions": "openOnSessionStart",
       "stopAtEntry": false,
       "console": "internalConsole",
