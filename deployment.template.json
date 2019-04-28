@@ -9,13 +9,7 @@
           "settings": {
             "minDockerVersion": "v1.25",
             "loggingOptions": "",
-            "registryCredentials": {
-              "smartbronco": {
-                "username": "$CONTAINER_REGISTRY_USERNAME_smartbronco",
-                "password": "$CONTAINER_REGISTRY_PASSWORD_smartbronco",
-                "address": "smartbronco.azurecr.io"
-              }
-            }
+            "registryCredentials": {}
           }
         },
         "systemModules": {
@@ -67,13 +61,13 @@
               "createOptions": {}
             }
           },
-          "TemperatureReader": {
+          "SampleModule": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.TemperatureReader}",
+              "image": "${MODULES.SampleModule}",
               "createOptions": {}
             }
           }
@@ -84,18 +78,13 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "TemperatureReaderToIoTHub": "FROM /messages/modules/TemperatureReader/outputs/* INTO $upstream",
-          "sensorToTemperatureReader": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/TemperatureReader/inputs/input1\")"
+          "SampleModuleToIoTHub": "FROM /messages/modules/SampleModule/outputs/* INTO $upstream",
+          "sensorToSampleModule": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/SampleModule/inputs/input1\")"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
         }
       }
-    },
-    "TemperatureReader": {
-      "properties.desired":{
-          "TemperatureThreshold":25
-      }
-  }
+    }
   }
 }
